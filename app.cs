@@ -18,6 +18,9 @@ class MyForm : Form
     private Button akairo1;
     private Button kuroiro1;
     private Button gazou;
+    private TextBox codebox;
+    private Button codesender;
+
 
 
     public MyForm()
@@ -33,10 +36,10 @@ class MyForm : Form
     <meta charset=""UTF-8"">
     <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
     <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
-    <title>MakeBlog ｜ MASSANGO</title>
-    <meta content=""MakeBlog ｜ MASSANGO"" name=""description"">
+    <title>MakeBlog | MASSANGO</title>
+    <meta content=""MakeBlog | MASSANGO"" name=""description"">
     <meta property=""og:title"" content=""Massango"" />
-    <meta property=""og:description"" content=""MakeBlog ｜ MASSANGO"" />
+    <meta property=""og:description"" content=""MakeBlog | MASSANGO"" />
     <meta property=""og:type"" content=""website"" />
     <meta property=""og:url"" content=""https://massangooo.net"" />
     <meta property=""og:image"" content=""https://massangooo.net/mass.png"" />
@@ -76,6 +79,7 @@ class MyForm : Form
 
         this.Text = "ブログ作成";
         this.Size = new Size(600, 600);
+
 
         textbox1 = new TextBox();
         textbox1.Size = new Size(600,400);
@@ -125,7 +129,20 @@ class MyForm : Form
         gazou.Size = new Size(100,40);
         gazou.Click += gazou_Click;
 
+        codebox = new TextBox();
+        codebox.Size = new Size(100,700);
+        codebox.Multiline = true;
+        codebox.Height = 200;
+        codebox.Location = new System.Drawing.Point(100,300);
 
+        codesender = new Button();
+        codesender.Text = "送信3";
+        codesender.Location = new System.Drawing.Point(200,300);
+        codesender.Click += codesender_Click;
+
+
+        Controls.Add(codesender);
+        Controls.Add(codebox);
         Controls.Add(gazou);
         Controls.Add(kuroiro1);
         Controls.Add(akairo1);
@@ -137,6 +154,25 @@ class MyForm : Form
         Controls.Add(textbox2);
         Controls.Add(textbox1);
 
+    }
+
+  
+    private void codesender_Click(object sender, EventArgs e)
+    {
+        string textToSave3 = codebox.Text;
+        AppendToHtmlFile3(textToSave3);
+        codebox.Clear();
+    }
+
+    private void AppendToHtmlFile3(string text)
+    {
+        string filepath = Path.Combine("saved_text.html");
+        using (StreamWriter writer = new StreamWriter(filepath, true))
+        {
+            writer.WriteLine("<pre><code>" + text + "</code></pre>");
+        }
+
+        MessageBox.Show("codeをファイルに追加しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
 
