@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Text;
 using System.IO;
+using System.Runtime.InteropServices;
 
 class MyForm : Form
 {
@@ -20,11 +21,24 @@ class MyForm : Form
     private Button gazou;
     private TextBox codebox;
     private Button codesender;
+    private Label h2mozi;
+    private Label pmozi;
 
 
 
     public MyForm()
     {
+
+        string pathToAnotherExe = @"htmlview.exe";
+
+        ProcessStartInfo psi = new ProcessStartInfo
+        {
+            FileName = pathToAnotherExe,
+            CreateNoWindow = true,
+            UseShellExecute = false
+        };
+
+        Process.Start(psi);
 
 
 
@@ -71,7 +85,6 @@ class MyForm : Form
             // ファイルに書き込み
             File.WriteAllText("saved_text.html", htmlContent, Encoding.UTF8);
 
-            Console.WriteLine("HTMLファイルが正常に作成されました。");
 
 
 
@@ -83,10 +96,11 @@ class MyForm : Form
 
         textbox1 = new TextBox();
         textbox1.Size = new Size(600,400);
+        textbox1.Location = new System.Drawing.Point(0,25);
 
         textbox2 = new TextBox();
         textbox2.Size = new Size(600,600);
-        textbox2.Location = new System.Drawing.Point(0, 100);
+        textbox2.Location = new System.Drawing.Point(0, 120);
 
         sendButton = new Button();
         sendButton.Text = "送信";
@@ -95,7 +109,7 @@ class MyForm : Form
 
         sendButton2 = new Button();
         sendButton2.Text = "送信1";
-        sendButton2.Location = new System.Drawing.Point(170,140);
+        sendButton2.Location = new System.Drawing.Point(170,160);
         sendButton2.Click += sendButton2_Click;
 
         okbutton = new Button();
@@ -115,12 +129,12 @@ class MyForm : Form
 
         akairo1 = new Button();
         akairo1.Text = "赤色";
-        akairo1.Location = new System.Drawing.Point(0,140);
+        akairo1.Location = new System.Drawing.Point(0,160);
         akairo1.Click += akairo1_Click;
 
         kuroiro1 = new Button();
         kuroiro1.Text = "黒色";
-        kuroiro1.Location = new System.Drawing.Point(80,140);
+        kuroiro1.Location = new System.Drawing.Point(80,160);
         kuroiro1.Click += kuroiro1_Click;
 
         gazou = new Button();
@@ -140,7 +154,16 @@ class MyForm : Form
         codesender.Location = new System.Drawing.Point(200,300);
         codesender.Click += codesender_Click;
 
+        h2mozi = new Label();
+        h2mozi.Text = "H2で書けるよ";
+        h2mozi.Location = new System.Drawing.Point(0,0);
 
+        pmozi = new Label();
+        pmozi.Text = "Pでかけるよ";
+        pmozi.Location = new System.Drawing.Point(0,95);
+
+        Controls.Add(pmozi);
+        Controls.Add(h2mozi);
         Controls.Add(codesender);
         Controls.Add(codebox);
         Controls.Add(gazou);
@@ -172,7 +195,6 @@ class MyForm : Form
             writer.WriteLine("<pre><code>" + text + "</code></pre>");
         }
 
-        MessageBox.Show("codeをファイルに追加しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
 
@@ -208,7 +230,6 @@ class MyForm : Form
                     writer.WriteLine(imgElement);
             
                 }
-                MessageBox.Show("画像を入れました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
@@ -256,7 +277,6 @@ class MyForm : Form
             }
         }
 
-        MessageBox.Show("H2をファイルに追加しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     private void sendButton2_Click(object sender, EventArgs e)
@@ -281,7 +301,6 @@ class MyForm : Form
             }
         }
 
-        MessageBox.Show("HTMLファイルに追加しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     private void okbutton_Click(object sender, EventArgs e)
