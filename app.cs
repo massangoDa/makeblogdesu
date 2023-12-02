@@ -18,7 +18,7 @@ class MyForm : Form
     private Button akairo1;
     private Button kuroiro1;
     private Button gazou;
-    private Button mokuji;
+
 
     public MyForm()
     {
@@ -33,10 +33,10 @@ class MyForm : Form
     <meta charset=""UTF-8"">
     <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
     <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
-    <title>Rehiniの借金時計 ｜ MASSANGO</title>
-    <meta content=""Rehiniの借金時計"" name=""description"">
+    <title>MakeBlog ｜ MASSANGO</title>
+    <meta content=""MakeBlog ｜ MASSANGO"" name=""description"">
     <meta property=""og:title"" content=""Massango"" />
-    <meta property=""og:description"" content=""Rehiniの借金時計"" />
+    <meta property=""og:description"" content=""MakeBlog ｜ MASSANGO"" />
     <meta property=""og:type"" content=""website"" />
     <meta property=""og:url"" content=""https://massangooo.net"" />
     <meta property=""og:image"" content=""https://massangooo.net/mass.png"" />
@@ -122,14 +122,10 @@ class MyForm : Form
         gazou = new Button();
         gazou.Text = "画像を入れる";
         gazou.Location = new System.Drawing.Point(0,300);
+        gazou.Size = new Size(100,40);
         gazou.Click += gazou_Click;
 
-        mokuji = new Button();
-        mokuji.Text = "目次を入れる";
-        mokuji.Location = new System.Drawing.Point(50,300);
-        mokuji.Click += mokuji_Click;
 
-        Controls.Add(mokuji);
         Controls.Add(gazou);
         Controls.Add(kuroiro1);
         Controls.Add(akairo1);
@@ -143,12 +139,6 @@ class MyForm : Form
 
     }
 
-    private void mokuji_Click(object sender, EventArgs e)
-    {
-        string filepath = Path.Combine("saved_text.html");
-        using (StreamWriter writer = new StreamWriter(filepath, true))
-        writer.WriteLine("<h2 class=\"akairo1\">" + text + "</h2>");
-    }
 
     private void gazou_Click(object sender, EventArgs e)
     {
