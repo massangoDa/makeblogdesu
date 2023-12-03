@@ -23,6 +23,7 @@ class MyForm : Form
     private Button codesender;
     private Label h2mozi;
     private Label pmozi;
+    private Label codemozi;
 
 
 
@@ -83,7 +84,7 @@ class MyForm : Form
 ";
 
             // ファイルに書き込み
-            File.WriteAllText("saved_text.html", htmlContent, Encoding.UTF8);
+        File.WriteAllText("saved_text.html", htmlContent, Encoding.UTF8);
 
 
 
@@ -105,6 +106,8 @@ class MyForm : Form
         sendButton = new Button();
         sendButton.Text = "送信";
         sendButton.Location = new System.Drawing.Point(170, 45);
+        sendButton.ForeColor = System.Drawing.Color.White;
+        sendButton.BackColor = Color.FromArgb(110, 123, 73);
         sendButton.Click += sendButton_Click;
 
         sendButton2 = new Button();
@@ -150,9 +153,10 @@ class MyForm : Form
         codebox.Location = new System.Drawing.Point(100,300);
 
         codesender = new Button();
-        codesender.Text = "送信3";
+        codesender.Text = "送信2";
         codesender.Location = new System.Drawing.Point(200,300);
         codesender.Click += codesender_Click;
+
 
         h2mozi = new Label();
         h2mozi.Text = "H2で書けるよ";
@@ -162,6 +166,11 @@ class MyForm : Form
         pmozi.Text = "Pでかけるよ";
         pmozi.Location = new System.Drawing.Point(0,95);
 
+        codemozi = new Label();
+        codemozi.Text = "コードを入れれます";
+        codemozi.Location = new System.Drawing.Point(200,400);
+
+        Controls.Add(codemozi);
         Controls.Add(pmozi);
         Controls.Add(h2mozi);
         Controls.Add(codesender);

@@ -1,0 +1,4 @@
+STORAGE: NONE
+NUGET
+  remote: https://api.nuget.org/v3/index.json
+    MaterialSkin (0.2.1)
